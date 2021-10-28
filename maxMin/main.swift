@@ -10,11 +10,11 @@ import Foundation
 func maxMin(k: Int, arr: [Int]) -> Int {
     
     for i in 0..<arr.count - k + 1 {
-        for j in 1...2 {
+        for j in 1..<arr.count {
             var tempArr = [Int]()
             tempArr.append(arr[i])
             for _ in 1..<k {
-                tempArr.append(arr[i + j])
+                tempArr.append(arr[i + j - 1])
                 print(tempArr)
             }
         }
