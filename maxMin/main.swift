@@ -9,16 +9,16 @@ import Foundation
 
 func maxMin(k: Int, arr: [Int]) -> Int {
     
-    var testArr = [Int]()
-    
-    for i in 0..<k {  
-        testArr.append(arr[i])
+    for i in 0..<arr.count - k + 1 {
+        for j in 1...2 {
+            var tempArr = [Int]()
+            tempArr.append(arr[i])
+            for _ in 1..<k {
+                tempArr.append(arr[i + j])
+                print(tempArr)
+            }
+        }
     }
-    print(testArr)
-    
-    let unfairness = testArr.max()! - testArr.min()!
-    print(unfairness)
-     
     return 0
 }
 
