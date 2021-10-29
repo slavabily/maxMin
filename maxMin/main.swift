@@ -12,10 +12,13 @@ func maxMin(k: Int, arr: [Int]) -> Int {
     var tempArr = arr
     var first = Int()
     
+    var estArr = [[Int]]()
+    var unfArr = [Int]()
+    
+    
     for _ in 0..<arr.count - 1 {
         
         first = tempArr.removeFirst()
-        print("\n\(tempArr)")
         
         for i in 0..<tempArr.count {
             
@@ -25,11 +28,24 @@ func maxMin(k: Int, arr: [Int]) -> Int {
             for _ in 1..<k {
                 
                 compArr.append(tempArr[i])
-                print("\(compArr)")
-            } 
+//                print("\(compArr)")
+                
+                estArr.append(compArr)
+            }
         }
     }
-    return 0
+    print(estArr)
+    
+    for i in 0..<estArr.count {
+        
+        let unfairness = estArr[i].max()! - estArr[i].min()!
+        
+        unfArr.append(unfairness)
+    }
+    print(unfArr)
+    print(unfArr.min()!)
+    
+    return unfArr.min()!
 }
 
 maxMin(k: 2, arr: [1,4,7,2])
