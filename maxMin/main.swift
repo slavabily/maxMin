@@ -8,45 +8,33 @@
 import Foundation
 
 func maxMin(k: Int, arr: [Int]) -> Int {
-    
-    var tempArr = arr
-    var first = Int()
-    
-    var estArr = [[Int]]()
-    var unfArr = [Int]()
-    
-    
-    for _ in 0..<arr.count - 1 {
-        
-        first = tempArr.removeFirst()
-        
-        for i in 0..<tempArr.count {
-            
-            var compArr = [Int]()
-            compArr.append(first)
-            
-            for _ in 1..<k {
-                
-                compArr.append(tempArr[i])
-//                print("\(compArr)")
-                
-                estArr.append(compArr)
+    var assArr = [[Int]]()
+    for n in 0..<arr.count {
+        for i in 0..<arr.count {
+            var temp = [Int]()
+            temp.append(arr[n])
+            for j in (i + 1)..<arr.count {
+                if temp.count < k {
+                    temp.append(arr[j])
+                }
+            }
+            var t1 = Array(Set(temp))
+            t1.sort()
+            if t1.count == k {
+                assArr.append(t1)
             }
         }
     }
-    print(estArr)
-    
-    for i in 0..<estArr.count {
-        
-        let unfairness = estArr[i].max()! - estArr[i].min()!
-        
-        unfArr.append(unfairness)
+    print(assArr)
+    var essArr = [Int]()
+    for i in 0..<assArr.count {
+        let unfair = assArr[i].max()! - assArr[i].min()!
+        essArr.append(unfair)
     }
-    print(unfArr)
-    print(unfArr.min()!)
-    
-    return unfArr.min()!
+    print(essArr)
+    print(essArr.min()!)
+    return essArr.min()!
 }
 
-maxMin(k: 2, arr: [1,4,7,2])
+maxMin(k: 3, arr: [10,100,300,200,1000,20,30])
 
